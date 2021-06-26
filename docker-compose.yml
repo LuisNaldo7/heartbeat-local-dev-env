@@ -1,0 +1,72 @@
+version: "3.9"
+services:
+  heartbeat-client-1:
+    image: luisnaldo7/heartbeat-client:latest
+    container_name: "client-1"
+
+    environment:
+      - HEARTBEAT_CLIENT_ID=ede88b30-1ba0-431a-9775-acfdf2ac0f57
+      - HEARTBEAT_CLIENT_INTERVAL=5
+      - HEARTBEAT_SERVER_BASE_URL=http://heartbeat-server:3000
+
+    depends_on:
+      heartbeat-server:
+        condition: service_started
+
+
+  heartbeat-client-2:
+    image: luisnaldo7/heartbeat-client:latest
+    container_name: "client-2"
+
+    environment:
+      - HEARTBEAT_CLIENT_ID=2d15c391-6646-44f3-8ed7-604ab60cddb5
+      - HEARTBEAT_CLIENT_INTERVAL=15
+      - HEARTBEAT_SERVER_BASE_URL=http://heartbeat-server:3000
+
+    depends_on:
+      heartbeat-server:
+        condition: service_started
+
+
+  heartbeat-server:
+    image: luisnaldo7/heartbeat-server:latest
+    container_name: "server"
+
+    environment:
+      - HEARTBEAT_DB_HOST=db
+      - HEARTBEAT_DB_PORT=3306
+      - HEARTBEAT_DB_SSL=false
+      - HEARTBEAT_DB_PASSWORD=password
+
+    ports:
+      - "3000:3000"
+
+    depends_on:
+      database:
+        condition: service_started
+
+
+  database:
+    image: mysql:8.0.25
+    container_name: "db"
+
+    command: --default-authentication-plugin=mysql_native_password
+
+    restart: always
+
+    environment:
+      MYSQL_DATABASE: heartbeat
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_USER: heartbeat
+      MYSQL_PASSWORD: password
+
+    volumes:
+      - ./mysql-dump:/docker-entrypoint-initdb.d
+
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - 8080:8080
