@@ -24,3 +24,7 @@ docker stop client-1
 ```
 
 alert mail will be sent after max_timeout exceeds
+
+## Managing Database
+
+Visit http://localhost:8080/ to view admin frontend. Credentials are defined in service "database" of docker-compose.yml
