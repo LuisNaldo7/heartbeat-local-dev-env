@@ -68,6 +68,18 @@ services:
         condition: service_started
 
 
+  heartbeat-dashboard:
+    image: luisnaldo7/heartbeat-dashboard:latest
+    container_name: "dashboard"
+
+    ports:
+      - "80:3001"
+
+    depends_on:
+      heartbeat-server:
+        condition: service_started
+
+
   database:
     image: mysql:8.0.25
     container_name: "db"

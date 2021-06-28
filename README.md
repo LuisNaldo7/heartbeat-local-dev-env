@@ -16,6 +16,10 @@ stop containers
 docker-compose down
 ```
 
+## Dashboard
+
+Visit http://localhost/ to get an overview of registered clients and their latest states.
+
 ## Trigger Alert Mail
 
 stop execution of any heartbeat-client
