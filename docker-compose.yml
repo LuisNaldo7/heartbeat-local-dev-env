@@ -36,7 +36,9 @@ services:
       - HEARTBEAT_DB_HOST=db
       - HEARTBEAT_DB_PORT=3306
       - HEARTBEAT_DB_SSL=false
+      - HEARTBEAT_DB_USER=heartbeat
       - HEARTBEAT_DB_PASSWORD=password
+      - HEARTBEAT_DB_DATABASE=heartbeat
 
     ports:
       - "3000:3000"
@@ -54,7 +56,9 @@ services:
       - HEARTBEAT_DB_HOST=db
       - HEARTBEAT_DB_PORT=3306
       - HEARTBEAT_DB_SSL=false
+      - HEARTBEAT_DB_USER=heartbeat
       - HEARTBEAT_DB_PASSWORD=password
+      - HEARTBEAT_DB_DATABASE=heartbeat
       - HEARTBEAT_MAIL_HOST=$HEARTBEAT_MAIL_HOST
       - HEARTBEAT_MAIL_PORT=$HEARTBEAT_MAIL_PORT
       - HEARTBEAT_MAIL_FROM=$HEARTBEAT_MAIL_FROM

@@ -1,6 +1,16 @@
-# heartbeat-local-dev-env
+# Heartbeat Local Development Environment
 
-Local setup for components of heartbeat project.
+This is a local setup for all components of the heartbeat project.
+
+## Components
+
+[Heartbeat-Client](https://github.com/LuisNaldo7/heartbeat-client)
+
+[Heartbeat-Server](https://github.com/LuisNaldo7/heartbeat-server)
+
+[Heartbeat-Alert](https://github.com/LuisNaldo7/heartbeat-alert)
+
+[Heartbeat-Dashboard](https://github.com/LuisNaldo7/heartbeat-dashboard)
 
 ## Run
 
