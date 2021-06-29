@@ -12,6 +12,8 @@ This is a local setup for all components of the heartbeat project.
 
 [Heartbeat-Dashboard](https://github.com/LuisNaldo7/heartbeat-dashboard)
 
+![Diagram](./docs/components.png)
+
 ## Run
 
 Copy .env.example to .env and adjust values.
