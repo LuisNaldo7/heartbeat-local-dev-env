@@ -92,6 +92,9 @@ services:
 
     restart: always
 
+    ports:
+      - 3306:3306
+
     environment:
       MYSQL_DATABASE: heartbeat
       MYSQL_ROOT_PASSWORD: example
