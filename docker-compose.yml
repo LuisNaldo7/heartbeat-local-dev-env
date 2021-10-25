@@ -6,7 +6,7 @@ services:
     container_name: "client-1"
     environment:
       - HEARTBEAT_CLIENT_ID=ede88b30-1ba0-431a-9775-acfdf2ac0f57
-      - HEARTBEAT_CLIENT_INTERVAL=5
+      - HEARTBEAT_CLIENT_INTERVAL=3
       - HEARTBEAT_SERVER_BASE_URL=http://heartbeat-server:3000
     depends_on:
       heartbeat-server:
