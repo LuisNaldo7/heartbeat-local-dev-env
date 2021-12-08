@@ -1,9 +1,8 @@
-version: "3.9"
+version: '3.9'
 services:
-
   heartbeat-client-1:
     image: luisnaldo7/heartbeat-client:latest
-    container_name: "client-1"
+    container_name: 'client-1'
     environment:
       - HEARTBEAT_CLIENT_ID=ede88b30-1ba0-431a-9775-acfdf2ac0f57
       - HEARTBEAT_CLIENT_INTERVAL=3
@@ -14,7 +13,7 @@ services:
 
   heartbeat-client-2:
     image: luisnaldo7/heartbeat-client:latest
-    container_name: "client-2"
+    container_name: 'client-2'
     environment:
       - HEARTBEAT_CLIENT_ID=2d15c391-6646-44f3-8ed7-604ab60cddb5
       - HEARTBEAT_CLIENT_INTERVAL=15
@@ -25,7 +24,7 @@ services:
 
   heartbeat-server:
     image: luisnaldo7/heartbeat-server:latest
-    container_name: "server"
+    container_name: 'server'
     environment:
       - HEARTBEAT_SERVER_PORT=3000
       - TYPEORM_CONNECTION=mysql
@@ -34,18 +33,18 @@ services:
       - TYPEORM_USERNAME=heartbeat
       - TYPEORM_PASSWORD=password
       - TYPEORM_DATABASE=heartbeat
-      - TYPEORM_SYNCHRONIZE=true
+      - TYPEORM_SYNCHRONIZE=false
       - TYPEORM_LOGGING=false
       - TYPEORM_ENTITIES=dist/**/*.entity.js
     ports:
-      - "3000:3000"
+      - '3000:3000'
     depends_on:
       database:
         condition: service_started
 
   heartbeat-alert:
     image: luisnaldo7/heartbeat-alert:latest
-    container_name: "alert"
+    container_name: 'alert'
     restart: always
     environment:
       - TYPEORM_CONNECTION=mysql
@@ -57,29 +56,34 @@ services:
       - TYPEORM_SYNCHRONIZE=false
       - TYPEORM_LOGGING=false
       - TYPEORM_ENTITIES=dist/**/*.entity.js
-      - HEARTBEAT_MAIL_HOST=$HEARTBEAT_MAIL_HOST
-      - HEARTBEAT_MAIL_PORT=$HEARTBEAT_MAIL_PORT
-      - HEARTBEAT_MAIL_FROM=$HEARTBEAT_MAIL_FROM
-      - HEARTBEAT_MAIL_PASSWORD=$HEARTBEAT_MAIL_PASSWORD
-      - HEARTBEAT_MAIL_TLS=$HEARTBEAT_MAIL_TLS
-      - HEARTBEAT_MAIL_TO=$HEARTBEAT_MAIL_TO
-      - HEARTBEAT_MAIL_SUBJECT=$HEARTBEAT_MAIL_SUBJECT
+      - MAIL_ENABLED=$MAIL_ENABLED
+      - MAIL_HOST=$MAIL_HOST
+      - MAIL_PORT=$MAIL_PORT
+      - MAIL_FROM=$MAIL_FROM
+      - MAIL_PASSWORD=$MAIL_PASSWORD
+      - MAIL_TLS=$MAIL_TLS
+      - MAIL_TO=$MAIL_TO
+      - MAIL_SUBJECT=$MAIL_SUBJECT
+      - DISCORD_ENABLED=$DISCORD_ENABLED
+      - DISCORD_WEBHOOK_CLIENT_ID=$DISCORD_WEBHOOK_CLIENT_ID
+      - DISCORD_WEBHOOK_CLIENT_TOKEN=$DISCORD_WEBHOOK_CLIENT_TOKEN
+      - HEARTBEAT_DASHBOARD_URL=$HEARTBEAT_DASHBOARD_URL
     depends_on:
       database:
         condition: service_started
 
   heartbeat-dashboard:
     image: luisnaldo7/heartbeat-dashboard:latest
-    container_name: "dashboard"
+    container_name: 'dashboard'
     ports:
-      - "80:3001"
+      - '80:3001'
     depends_on:
       heartbeat-server:
         condition: service_started
 
   database:
-    image: mysql:8.0.25
-    container_name: "db"
+    image: mysql:8.0.27
+    container_name: 'db'
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     ports:

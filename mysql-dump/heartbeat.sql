@@ -33,7 +33,8 @@ CREATE TABLE `device` (
   `max_timeout` int(11) NOT NULL DEFAULT 60,
   `last_seen` int(11) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
-  `mail_sent` tinyint(4) NOT NULL DEFAULT 0,
+  `alert_sent_mail` tinyint(4) NOT NULL DEFAULT 0,
+  `alert_sent_discord` tinyint(4) NOT NULL DEFAULT 0,
   `enabled` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -41,9 +42,9 @@ CREATE TABLE `device` (
 -- Dumping data for table `device`
 --
 
-INSERT INTO `device` (`guid`, `description`, `max_timeout`, `last_seen`, `type`, `mail_sent`, `enabled`) VALUES
-('ede88b30-1ba0-431a-9775-acfdf2ac0f57', 'client-1', 15, NULL, NULL, 0, 1),
-('2d15c391-6646-44f3-8ed7-604ab60cddb5', 'client-2', 60, NULL, NULL, 0, 1);
+INSERT INTO `device` (`guid`, `description`, `max_timeout`, `last_seen`, `type`, `alert_sent_mail`, `alert_sent_discord`, `enabled`) VALUES
+('ede88b30-1ba0-431a-9775-acfdf2ac0f57', 'client-1', 15, NULL, NULL, 0, 0, 1),
+('2d15c391-6646-44f3-8ed7-604ab60cddb5', 'client-2', 60, NULL, NULL, 0, 0, 1);
 
 --
 -- Indexes for dumped tables
