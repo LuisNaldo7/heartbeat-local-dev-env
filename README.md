@@ -20,13 +20,13 @@ Copy .env.example to .env and adjust values.
 
 start containers
 
-```bash
+```
 docker-compose up -d
 ```
 
 stop containers
 
-```bash
+```
 docker-compose down
 ```
 
@@ -38,7 +38,7 @@ Visit http://localhost/ to get an overview of registered clients and their lates
 
 stop execution of any heartbeat-client
 
-```bash
+```
 docker stop client-1
 ```
 
