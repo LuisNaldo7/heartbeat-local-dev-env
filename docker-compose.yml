@@ -25,6 +25,7 @@ services:
   heartbeat-server:
     image: luisnaldo7/heartbeat-server:latest
     container_name: 'server'
+    restart: always
     environment:
       - HEARTBEAT_SERVER_PORT=3000
       - TYPEORM_CONNECTION=mysql
